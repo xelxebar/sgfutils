@@ -19,6 +19,8 @@ SOURCES=$(CSOURCES) $(HSOURCES)
 
 CFLAGS=-Wall -Wmissing-prototypes -O3
 
+BINDIR=$(DESTDIR)$(PREFIX)/bin
+
 # For systems where iconv is in a separate library
 # LDLIBS=-liconv
 # is needed for sgfcharset and ugi2sgf
@@ -77,6 +79,12 @@ makefile: Makefile makefile.tail
 
 # gnumake complains about $include
 -include $(DEPFILE)
+
+install: $(PROGS)
+	install -m 755 -D -t "$(BINDIR)" $^
+
+uninstall:
+	rm -f $(PROGS:%=$(BINDIR)/%)
 
 clean:
 	rm -f *~ $(OBJECTS) $(PROGS)
