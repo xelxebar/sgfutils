@@ -49,17 +49,17 @@ sgfdb: sgfdb.o readsgf.o playgogame.o ftw.o xmalloc.o
 
 sgfinfo: sgfinfo.o sgffileinput.c readsgf.o playgogame.o tests.o \
 	 ftw.o xmalloc.o
-	cc $(CFLAGS) $^ -o $@ -lcrypto
+	$(CC) $(CFLAGS) $^ -o $@ -lcrypto
 
 sgfdbinfo: sgfdbinfo.o sgfdbinput.o readsgf.o xmalloc.o tests.o ftw.o
-	cc $(CFLAGS) $^ -o $@ -lcrypto
+	$(CC) $(CFLAGS) $^ -o $@ -lcrypto
 
 sgfcharset: sgfcharset.o xmalloc.o
 
 sgfinfo.o: sgfinfo.c
 
 sgfdbinfo.o: sgfinfo.c
-	cc $(CFLAGS) -DREAD_FROM_DB -c sgfinfo.c -o sgfdbinfo.o
+	$(CC) $(CFLAGS) -DREAD_FROM_DB -c sgfinfo.c -o sgfdbinfo.o
 
 sgftopng: sgftopng.o
 
